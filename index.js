@@ -20,13 +20,13 @@ app.get('/', async (req, res) =>{
 
 app.get('/contacts', async (req, res) =>{
     const data = await contacts.getListOfCollections();
-    res.status(211);
     
-    res.send(data);
+    res.header('Content-Type', 'application/json').send(data);
 });
 
 app.post('/contacts', async (req, res) =>{
     const data = req.body;
+    res.header('Content-Type', 'application/json');
     if(data !== null){
         contacts.insertOne(data);
         res.send('the contact was successfully added.');
